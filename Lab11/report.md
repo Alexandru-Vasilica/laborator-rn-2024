@@ -12,6 +12,7 @@ In order to improve convergence the following techniques were used:
 - Episilon greedy exploration, with gradual decay of epsilon
 - Using the Adam optimizer for parameter updates
 - Xavier initialization for the weights of the neural network
+- A target network which is updated every 100 steps for more stable training
 
 In order to improve the training time, CUDA was used to train the neural network on the GPU.
 
@@ -32,8 +33,7 @@ hyperparameters=Hyperparameters(
 )
 ```
 
-The experiments conducted in order to improve the agent's performance lead to adding layer normalization, an Adam optimizer and increasing the replay buffer capacity to 50_000, which improved the convergence of the agent. Furthermore the gamma was chosen to be 0.9, as it was found to be a good trade-off between immediate and future rewards( other values which were tried were 0.8, 0.95, 0.99). Also multiple configurations for the hidden layers were tried, with the current configuration being the one which lead to the fastest convergence. The epsilon and epsilon decay were also adjusted until a good balance between exploration and exploitation was found. To improve the network's performance, layer normalization, dropout and batch normalization were tested, however, neither proved effective( probably due to the small action space). The use of a target network that is updated more rarely than the main network was also tested, however, it did not improve the agent's performance.
-
+The experiments conducted in order to improve the agent's performance lead to adding layer normalization, an Adam optimizer and increasing the replay buffer capacity to 50_000, which improved the convergence of the agent. Furthermore the gamma was chosen to be 0.9, as it was found to be a good trade-off between immediate and future rewards( other values which were tried were 0.8, 0.95, 0.99). Also multiple configurations for the hidden layers were tried, with the current configuration being the one which lead to the fastest convergence. The epsilon and epsilon decay were also adjusted until a good balance between exploration and exploitation was found. To improve the network's performance, layer normalization, dropout and batch normalization were tested, however, neither proved effective( probably due to the small action space).
 ![Training Graph](plots/score_plot_best_5.png)
 
 ## Results
